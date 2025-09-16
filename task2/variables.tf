@@ -24,3 +24,4 @@ variable "public_addresses" {
   description = "adresses for public subnet"
   default = [ "172.16.0.0/24", "172.16.1.0/24", "172.16.2.0/24"  ]
 }
+
