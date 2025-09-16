@@ -1,0 +1,6 @@
+**/terraform.tfvars
+**/*.tfvars
+**/*.tfstate**
+/course
+/guide
+/**/.terraform*
