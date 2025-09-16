@@ -65,8 +65,7 @@ resource "aws_route_table" "second_rt" {
   tags = {
     Name = "2nd Route Table"
   }
-} # только так можно сделать? можно ли просто сделать 2 
-  # правила в route? или обязательно новую создавать таблицу?
+}
 resource "aws_route_table" "third_rt" {
   vpc_id = aws_vpc.vpc.id 
   tags = {
