@@ -91,6 +91,17 @@ resource "aws_route_table_association" "sec_rt_assoc" {//route table attachemt
   route_table_id = aws_route_table.sec_rt.id   
 }
 
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id       = aws_vpc.vpc.id
+  service_name = "com.amazonaws.${var.region}.s3"
+  //service_name = "com.amazonaws.us-west-2.s3"
+  vpc_endpoint_type          = "Gateway"
+  route_table_ids = [aws_route_table.sec_rt.id]
+  tags = {
+    Environment = "test"
+  }
+}
+
 
 
 
