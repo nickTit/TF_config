@@ -65,8 +65,15 @@ resource "aws_route_table" "second_rt" {
 } # только так можно сделать? можно ли просто сделать 2 
   # правила в route? или обязательно новую создавать таблицу?
 
+
+
+
 resource "aws_route_table" "third_rt" {
   vpc_id = aws_vpc.vpc.id 
+  route  {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat.id
+  }
   tags = {
     Name = "3rd Route Table"
   }
@@ -91,6 +98,23 @@ resource "aws_route_table_association" "private_subnet_asso" {
  //subnet_id      = each.value.id
  
  route_table_id = aws_route_table.third_rt.id
+}
+
+resource "aws_eip" "eip" {
+  domain = "vpc"
+  
+  tags = {
+    name= "one elast for NAT"
+  }
+}
+
+
+resource "aws_nat_gateway" "nat" {
+  subnet_id = aws_subnet.public_subnet[0].id
+  allocation_id = aws_eip.eip.id
+  tags = {
+    name = "main NAT gateway"
+  }
 }
 
 
