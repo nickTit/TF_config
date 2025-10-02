@@ -60,7 +60,7 @@ resource "aws_subnet" "subnets" {
   count = length(var.public_address)
   vpc_id = aws_vpc.vpc.id
   cidr_block = var.public_address[count.index]
-  availability_zone = var.availability_zone
+  availability_zone = var.availability_zone[count.index]
 
   tags = {
   Name = "Public subnet No  ${count.index}"

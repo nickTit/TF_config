@@ -9,7 +9,8 @@ variable "access_key" {
   type = string
 }
 variable "availability_zone" {
-  default = "eu-north-1a"
+  type = list(string)
+  default = ["eu-north-1a", "eu-north-1b", "eu-north-1c"]
 }
 
 variable "public_address" {
